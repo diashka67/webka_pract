@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: radial-gradient(circle at bottom, #f8eed9, #f4dca8);
+}
+
+/* Главная карточка */
+.todo-card {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 30px 30px 20px;
+    background: #272021;
+    color: white;
+    border: 3px solid #1a2cff;
+    border-radius: 25px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 56px;
+    margin: 30px 0 25px;
+}
+
+h2 {
+    font-size: 32px;
+    margin: 30px 0 25px;
+}
+
+/* Поле ввода + кнопка Add */
+.input-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input-group input {
+    width: 320px;
+    height: 64px;
+    padding: 0 12px;
+    font-size: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+.input-group button {
+    padding: 0 20px;
+    font-size: 28px;
+    background: #3a5be0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Список задач */
+.only_tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tasks_flex {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.tasks_flex p {
+    flex: 1;
+    margin: 0;
+    font-size: 24px;
+}
+
+.tasks_flex input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.tasks_flex input[type="text"] {
+    flex: 1;
+    padding: 6px;
+    font-size: 18px;
+}
+
+.tasks_flex button {
+    background: none;
+    border: none;
+    color: #d6334a;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.tasks_flex button:hover {
+    text-decoration: underline;
+}
+
+/* Выполненная задача */
+.tasks_flex.done {
+    border-color: #777;
+}
+
+.tasks_flex.done p {
+    text-decoration: line-through;
+    color: #777;
+}
+
+/* Счётчики */
+.counters {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 3px solid #1a2cff;
+    font-size: 24px;
+}
