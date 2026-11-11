@@ -1,46 +1,102 @@
-let taskInput = document.getElementById('taskInput');
-let addBtn = document.getElementById('addBtn');
-let taskList = document.querySelector('.only_tasks');
-let completed = document.getElementById('completed');
-let uncompleted = document.getElementById('uncompleted');
+const taskInput = document.getElementById('taskInput');
+const addBtn = document.getElementById('addBtn');
+const taskList = document.querySelector('.only_tasks');
+const completedCounter = document.getElementById('completed');
+const uncompletedCounter = document.getElementById('uncompleted');
 
-// Обновляем счётчики
-function updateCounters() {
-    let all = taskList.children.length;
-    let done = taskList.querySelectorAll('.done').length;
-    completed.textContent = done;
-    uncompleted.textContent = all - done;
-}
-
-// Добавляем задачу
 function addTask() {
-    let text = taskInput.value.trim();
-    if (text === '') return; // пустую задачу не добавляем
+    const text = taskInput.value.trim();
+    if (text === '') return;
 
-    let task = document.createElement('div');
-    task.textContent = text;
+    // Создаём элементы задачи
+    const task = document.createElement('div');
+    task.className = 'tasks_flex';
 
-    // клик по задаче: выполнена / не выполнена
-    task.addEventListener('click', function () {
-        task.classList.toggle('done');
-        updateCounters();
-    });
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
 
-    // кнопка удаления
-    let delBtn = document.createElement('button');
-    delBtn.textContent = 'Delete';
-    delBtn.addEventListener('click', function (event) {
-        event.stopPropagation(); // чтобы клик не отмечал задачу выполненной
+    const taskText = document.createElement('p');
+    taskText.textContent = text;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+
+    task.append(checkbox, taskText, deleteBtn, editBtn);
+    taskList.append(task);
+    taskInput.value = '';
+
+    // Удалить
+    deleteBtn.addEventListener('click', function () {
         task.remove();
         updateCounters();
     });
 
-    task.append(' ', delBtn);
-    taskList.appendChild(task);
+    // Отметить выполненной (выполненные уходят вниз)
+    checkbox.addEventListener('change', function () {
+        if (checkbox.checked) {
+            task.classList.add('done');
+            taskList.append(task);
+        } else {
+            task.classList.remove('done');
+            taskList.prepend(task);
+        }
+        updateCounters();
+    });
 
-    taskInput.value = '';
+    // Редактировать
+    editBtn.addEventListener('click', function () {
+        const editInput = document.createElement('input');
+        editInput.type = 'text';
+        editInput.value = taskText.textContent;
+
+        const saveBtn = document.createElement('button');
+        saveBtn.textContent = 'Save';
+
+        const cancelBtn = document.createElement('button');
+        cancelBtn.textContent = 'Cancel';
+
+        // Прячем обычный вид, показываем режим редактирования
+        taskText.style.display = 'none';
+        editBtn.style.display = 'none';
+        deleteBtn.style.display = 'none';
+        task.append(editInput, saveBtn, cancelBtn);
+
+        function closeEdit() {
+            editInput.remove();
+            saveBtn.remove();
+            cancelBtn.remove();
+            taskText.style.display = '';
+            editBtn.style.display = '';
+            deleteBtn.style.display = '';
+        }
+
+        saveBtn.addEventListener('click', function () {
+            if (editInput.value.trim() !== '') {
+                taskText.textContent = editInput.value.trim();
+            }
+            closeEdit();
+        });
+
+        cancelBtn.addEventListener('click', closeEdit);
+    });
+
     updateCounters();
 }
 
+function updateCounters() {
+    const all = taskList.querySelectorAll('input[type="checkbox"]');
+    const done = taskList.querySelectorAll('input[type="checkbox"]:checked');
+
+    completedCounter.textContent = done.length;
+    uncompletedCounter.textContent = all.length - done.length;
+}
+
 addBtn.addEventListener('click', addTask);
-updateCounters();
+
+// Добавление по Enter
+taskInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') addTask();
+});
