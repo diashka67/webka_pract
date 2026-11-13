@@ -1,4 +1,3 @@
-// задачи хранятся в массиве, у каждой есть id, text и done (выполнена или нет)
 let tasks = []
 
 const taskInput = document.getElementById('taskInput')
@@ -7,22 +6,18 @@ const taskList = document.querySelector('.only_tasks')
 const completedCounter = document.getElementById('completed')
 const uncompletedCounter = document.getElementById('uncompleted')
 
-// здесь будем помнить, какая задача сейчас редактируется
-// (чтобы одновременно было открыто только одно окошко редактирования)
 let openedEdit = null
 
 
-// добавление новой задачи
 function addTask() {
     let text = taskInput.value.trim()
 
-    // пустые задачи не добавляем
     if (text === '') {
         return
     }
 
     let task = {
-        id: Date.now(),
+        id: crypto.randomUUID(),
         text: text,
         done: false
     }
@@ -35,13 +30,11 @@ function addTask() {
 }
 
 
-// создаем блок задачи на странице
 function createTaskElement(task) {
     let taskDiv = document.createElement('div')
     taskDiv.className = 'task'
     taskList.append(taskDiv)
 
-    // первое окошко - обычный режим (чекбокс, текст, кнопки)
     let contentMode = document.createElement('div')
     contentMode.className = 'content'
     taskDiv.append(contentMode)
@@ -61,7 +54,6 @@ function createTaskElement(task) {
     createDeleteButton(buttons, taskDiv, task)
     createEditButton(buttons, taskDiv, contentMode, taskText, task)
 
-    // отметка выполнено / не выполнено
     checkbox.addEventListener('change', function () {
         task.done = checkbox.checked
 
@@ -88,7 +80,6 @@ function createDeleteButton(buttons, taskDiv, task) {
 }
 
 
-// удаляем из массива по id и убираем со страницы
 function deleteTask(taskDiv, id) {
     tasks = tasks.filter(function (task) {
         return task.id !== id
@@ -105,7 +96,6 @@ function createEditButton(buttons, taskDiv, contentMode, taskText, task) {
     buttons.append(editButton)
 
     editButton.addEventListener('click', function () {
-        // если уже где-то открыто редактирование - закрываем его
         if (openedEdit !== null) {
             closeEditMode(openedEdit.contentMode, openedEdit.editMode)
         }
@@ -116,7 +106,6 @@ function createEditButton(buttons, taskDiv, contentMode, taskText, task) {
 }
 
 
-// второе окошко - режим редактирования (инпут, save, cancel)
 function createEditWindow(taskDiv, contentMode, taskText, task) {
     let editMode = document.createElement('div')
     editMode.className = 'edit'
@@ -140,7 +129,6 @@ function createEditWindow(taskDiv, contentMode, taskText, task) {
     saveButton.addEventListener('click', function () {
         let newText = editInput.value.trim()
 
-        // если стерли весь текст - не сохраняем
         if (newText === '') {
             return
         }
@@ -161,7 +149,6 @@ function createEditWindow(taskDiv, contentMode, taskText, task) {
 }
 
 
-// закрываем редактирование и показываем обычный режим
 function closeEditMode(contentMode, editMode) {
     contentMode.style.display = 'flex'
     editMode.remove()
@@ -169,7 +156,6 @@ function closeEditMode(contentMode, editMode) {
 }
 
 
-// считаем сколько выполнено и сколько нет
 function updateCounters() {
     let completed = 0
 
@@ -186,7 +172,6 @@ function updateCounters() {
 
 addBtn.addEventListener('click', addTask)
 
-// добавление по Enter
 taskInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         addTask()
