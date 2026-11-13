@@ -27,14 +27,16 @@ h2 {
     color: #e0457f;
 }
 
-/* поле ввода и кнопка Add */
 .input-group {
     display: flex;
+    justify-content: center;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 .input-group input {
-    flex: 1;
+    width: 60%;
+    max-width: 280px;
     padding: 10px;
     font-size: 16px;
     border: 2px solid #ffb3cf;
@@ -64,80 +66,62 @@ button {
     background-color: #e0457f;
 }
 
-/* задачи */
-.task {
+.tasks_flex {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     background-color: #fff0f6;
     border: 2px solid #ffb3cf;
     border-radius: 12px;
-    padding: 10px 14px;
+    padding: 12px 16px;
     margin-bottom: 10px;
 }
 
-.content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.content input[type="checkbox"] {
+.tasks_flex input[type="checkbox"] {
     width: 18px;
     height: 18px;
+    margin: 0;
     accent-color: #ff6fa5;
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
-.content p {
+.tasks_flex p {
     flex: 1;
     margin: 0;
     word-break: break-word;
+    text-align: left;
 }
 
-/* зачеркнутый текст у выполненных задач */
-.done {
+.tasks_flex.done p {
     text-decoration: line-through;
     color: #b58a9b;
 }
 
-.buttons {
-    display: flex;
-    gap: 6px;
+.tasks_flex button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #e0457f;
+    flex-shrink: 0;
 }
 
-.delete-btn {
-    background-color: #ff8fb8;
-    color: #fff;
+.tasks_flex button:hover {
+    text-decoration: underline;
 }
 
-.edit-btn {
-    background-color: #ffd1e3;
-    color: #a3245a;
-}
-
-/* режим редактирования */
-.edit {
-    display: flex;
-    gap: 6px;
-}
-
-.edit input {
+.tasks_flex input[type="text"] {
     flex: 1;
     min-width: 0;
-    padding: 8px;
+    padding: 6px 10px;
     font-size: 15px;
     border: 2px solid #ff6fa5;
     border-radius: 8px;
+    outline: none;
 }
 
-.save-btn {
-    background-color: #ff6fa5;
-    color: #fff;
-}
-
-.cancel-btn {
-    background-color: #ffd1e3;
-    color: #a3245a;
-}
-
-/* счетчики */
 .counters {
     margin-top: 20px;
     padding-top: 15px;
