@@ -29,14 +29,11 @@ h2 {
 
 .input-group {
     display: flex;
-    justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
 .input-group input {
-    width: 60%;
-    max-width: 280px;
+    flex: 1;
     padding: 10px;
     font-size: 16px;
     border: 2px solid #ffb3cf;
@@ -66,60 +63,74 @@ button {
     background-color: #e0457f;
 }
 
-.tasks_flex {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.task {
     background-color: #fff0f6;
     border: 2px solid #ffb3cf;
     border-radius: 12px;
-    padding: 12px 16px;
+    padding: 10px 14px;
     margin-bottom: 10px;
 }
 
-.tasks_flex input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin: 0;
-    accent-color: #ff6fa5;
-    cursor: pointer;
-    flex-shrink: 0;
+.content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.tasks_flex p {
+.content input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #ff6fa5;
+}
+
+.content p {
     flex: 1;
     margin: 0;
     word-break: break-word;
-    text-align: left;
 }
 
-.tasks_flex.done p {
+.done {
     text-decoration: line-through;
     color: #b58a9b;
 }
 
-.tasks_flex button {
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: 15px;
-    font-weight: 500;
-    color: #e0457f;
-    flex-shrink: 0;
+.buttons {
+    display: flex;
+    gap: 6px;
 }
 
-.tasks_flex button:hover {
-    text-decoration: underline;
+.delete-btn {
+    background-color: #ff8fb8;
+    color: #fff;
 }
 
-.tasks_flex input[type="text"] {
+.edit-btn {
+    background-color: #ffd1e3;
+    color: #a3245a;
+}
+
+.edit {
+    display: flex;
+    gap: 6px;
+}
+
+.edit input {
     flex: 1;
     min-width: 0;
-    padding: 6px 10px;
+    padding: 8px;
     font-size: 15px;
     border: 2px solid #ff6fa5;
     border-radius: 8px;
-    outline: none;
+}
+
+.save-btn {
+    background-color: #ff6fa5;
+    color: #fff;
+}
+
+.cancel-btn {
+    background-color: #ffd1e3;
+    color: #a3245a;
 }
 
 .counters {
