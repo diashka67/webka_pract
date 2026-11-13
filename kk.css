@@ -1,123 +1,147 @@
-* {
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
-    min-height: 100vh;
-    padding: 40px 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    background: radial-gradient(circle at bottom, #f8eed9, #f4dca8);
+    padding: 40px 15px;
+    font-family: Arial, sans-serif;
+    background-color: #ffe4ee;
 }
 
-/* Главная карточка */
 .todo-card {
-    max-width: 650px;
+    max-width: 520px;
     margin: 0 auto;
-    padding: 30px 30px 20px;
-    background: #272021;
-    color: white;
-    border: 3px solid #1a2cff;
-    border-radius: 25px;
-    text-align: center;
+    padding: 25px;
+    background-color: #fff;
+    border: 3px solid #ff6fa5;
+    border-radius: 20px;
+    color: #5a2a3f;
 }
 
 h1 {
-    font-size: 56px;
-    margin: 30px 0 25px;
+    text-align: center;
+    color: #e0457f;
+    margin-top: 0;
 }
 
 h2 {
-    font-size: 32px;
-    margin: 30px 0 25px;
+    text-align: center;
+    font-size: 20px;
+    color: #e0457f;
 }
 
-/* Поле ввода + кнопка Add */
+/* поле ввода и кнопка Add */
 .input-group {
     display: flex;
-    justify-content: center;
     gap: 10px;
 }
 
 .input-group input {
-    width: 320px;
-    height: 64px;
-    padding: 0 12px;
-    font-size: 20px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ffb3cf;
+    border-radius: 10px;
+    outline: none;
 }
 
-.input-group button {
-    padding: 0 20px;
-    font-size: 28px;
-    background: #3a5be0;
-    border: none;
-    border-radius: 8px;
+.input-group input:focus {
+    border-color: #ff6fa5;
+}
+
+button {
     cursor: pointer;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 14px;
 }
 
-/* Список задач */
-.only_tasks {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+#addBtn {
+    background-color: #ff6fa5;
+    color: #fff;
+    font-weight: bold;
 }
 
-.tasks_flex {
+#addBtn:hover {
+    background-color: #e0457f;
+}
+
+/* задачи */
+.task {
+    background-color: #fff0f6;
+    border: 2px solid #ffb3cf;
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+}
+
+.content {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 5px 20px;
-    border: 2px solid white;
-    border-radius: 10px;
-    text-align: left;
+    gap: 10px;
 }
 
-.tasks_flex p {
+.content input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #ff6fa5;
+}
+
+.content p {
     flex: 1;
     margin: 0;
-    font-size: 24px;
+    word-break: break-word;
 }
 
-.tasks_flex input[type="checkbox"] {
-    width: 22px;
-    height: 22px;
-    cursor: pointer;
-}
-
-.tasks_flex input[type="text"] {
-    flex: 1;
-    padding: 6px;
-    font-size: 18px;
-}
-
-.tasks_flex button {
-    background: none;
-    border: none;
-    color: #d6334a;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.tasks_flex button:hover {
-    text-decoration: underline;
-}
-
-/* Выполненная задача */
-.tasks_flex.done {
-    border-color: #777;
-}
-
-.tasks_flex.done p {
+/* зачеркнутый текст у выполненных задач */
+.done {
     text-decoration: line-through;
-    color: #777;
+    color: #b58a9b;
 }
 
-/* Счётчики */
+.buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.delete-btn {
+    background-color: #ff8fb8;
+    color: #fff;
+}
+
+.edit-btn {
+    background-color: #ffd1e3;
+    color: #a3245a;
+}
+
+/* режим редактирования */
+.edit {
+    display: flex;
+    gap: 6px;
+}
+
+.edit input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px;
+    font-size: 15px;
+    border: 2px solid #ff6fa5;
+    border-radius: 8px;
+}
+
+.save-btn {
+    background-color: #ff6fa5;
+    color: #fff;
+}
+
+.cancel-btn {
+    background-color: #ffd1e3;
+    color: #a3245a;
+}
+
+/* счетчики */
 .counters {
-    margin-top: 30px;
+    margin-top: 20px;
     padding-top: 15px;
-    border-top: 3px solid #1a2cff;
-    font-size: 24px;
+    border-top: 2px solid #ffb3cf;
+    text-align: center;
+    font-size: 17px;
 }
